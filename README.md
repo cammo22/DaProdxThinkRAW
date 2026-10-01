@@ -85,4 +85,4 @@ Il libro è una lista di *spread* (doppie pagine) in `assets/js/content.js`. Ogn
 
 ## Pubblicazione
 
-Il workflow `.github/workflows/pages.yml` copia il sito sul ramo `gh-pages` a ogni push su `main`. Se Pages non si accende da solo: **Settings → Pages → Build and deployment → Deploy from a branch → `gh-pages` / (root)**.
+Il workflow `.github/workflows/pages.yml` pubblica il sito a ogni push su `main`: prova il deploy ufficiale di GitHub Actions (che accende Pages da solo) e in più copia il sito sul ramo `gh-pages`. Se Pages non si accende: **Settings → Pages → Build and deployment → Deploy from a branch → `gh-pages` / (root)**.
