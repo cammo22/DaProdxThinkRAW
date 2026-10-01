@@ -1,6 +1,8 @@
 # GitHub Pages: il sito è statico (niente da compilare), si pubblica a ogni push su main.
-# Il risultato finisce sul ramo gh-pages. Se Pages non si accende da solo:
-# Settings → Pages → Build and deployment → Deploy from a branch → gh-pages / (root).
+# Due strade, una di riserva all'altra:
+#  1. "pages": il deploy ufficiale di GitHub Actions; prova ad accendere Pages da solo (enablement).
+#  2. "ramo":  copia il sito sul ramo gh-pages. Se la 1 non riesce ad accendere Pages:
+#     Settings → Pages → Build and deployment → Deploy from a branch → gh-pages / (root).
 name: Pages
 
 on:
@@ -8,16 +10,41 @@ on:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  pubblica:
+  pages:
     runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Prepara il sito
+        run: |
+          mkdir _sito
+          cp -r index.html assets _sito/
+          touch _sito/.nojekyll
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _sito
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+  ramo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
       - name: Prepara il sito
