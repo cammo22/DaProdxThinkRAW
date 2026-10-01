@@ -1,0 +1,35 @@
+/* Finale: carta, scritte che scorrono, la foto vera dell'oggetto */
+
+.sec-fine {
+  position: relative; background: var(--carta); color: var(--inchiostro); overflow: hidden; padding-top: 12vh;
+}
+.sec-fine::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: url('../img/grana.jpg') 0 0 / 360px; mix-blend-mode: multiply; opacity: .4; }
+.fin-strappo { position: absolute; left: 0; right: 0; top: -1px; height: 54px; background: #0b0b0a; z-index: 2; }
+
+.fin-marquee { position: relative; overflow: hidden; padding: 2vh 0 6vh; user-select: none; }
+.fin-riga { display: grid; gap: 0; }
+.fin-r1, .fin-r2 { display: flex; width: max-content; white-space: nowrap; font: 900 clamp(5.5rem, 19vw, 20rem)/.86 var(--ui); font-stretch: 125%; letter-spacing: -.05em; text-transform: uppercase; will-change: transform; }
+.fin-r1 i, .fin-r2 i { display: inline-block; width: .16em; height: .16em; margin: 0 .24em; border-radius: 50%; background: var(--accento); align-self: center; flex: none; }
+.fin-r2 span.o { color: transparent; -webkit-text-stroke: clamp(1.5px, .25vw, 4px) var(--inchiostro); }
+
+.fin-corpo { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 6vw; align-items: center; padding: 8vh clamp(18px, 6vw, 110px) 14vh; }
+.fin-foto { position: relative; }
+.fin-cornice { overflow: hidden; border-radius: 4px; box-shadow: 0 30px 60px -24px rgba(0,0,0,.5), 0 0 0 1px rgba(0,0,0,.08); transform: rotate(-1.4deg); background: #c9a273; }
+.fin-cornice img { width: 100%; height: auto; will-change: transform; }
+.fin-foto figcaption { margin-top: 1.2rem; font: 400 .72rem/1.5 var(--mono); letter-spacing: .04em; opacity: .7; max-width: 46ch; }
+.fin-foto figcaption span { font-weight: 700; margin-right: .6rem; }
+
+.fin-testo { max-width: 38rem; }
+.fin-kicker { font: 700 .72rem/1 var(--mono); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1.6rem; }
+.fin-testo h2 { font: 900 clamp(2.6rem, 6.2vw, 6rem)/.9 var(--ui); font-stretch: 125%; letter-spacing: -.045em; text-transform: uppercase; margin-bottom: 2rem; }
+.fin-testo h2 em { font-style: normal; color: var(--accento); }
+.fin-testo p:not(.fin-kicker) { font-size: clamp(1rem, 1.25vw, 1.2rem); line-height: 1.5; max-width: 34em; }
+.fin-azioni { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.4rem; }
+
+.fin-piede { position: relative; display: flex; flex-wrap: wrap; gap: 1rem 3rem; justify-content: space-between; padding: 2.2rem clamp(18px, 6vw, 110px) 2.6rem; border-top: 1.5px solid var(--inchiostro); font: 400 .72rem/1.4 var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+.fin-piede b { font-weight: 700; }
+
+@media (min-width: 761px) { .fin-piede { padding-right: calc(clamp(18px, 6vw, 110px) + 150px); } }
+@media (max-width: 820px) {
+  .fin-corpo { grid-template-columns: 1fr; gap: 3rem; padding-bottom: 20vh; }
+}

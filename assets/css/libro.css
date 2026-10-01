@@ -1,0 +1,44 @@
+/* Il palco scuro dove il libro si apre */
+
+#libro { background: #0b0b0a; }
+.libro-stage { background: #0b0b0a; }
+.libro-luce {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(60% 55% at 50% 44%, rgba(255,244,222,.2), rgba(255,244,222,0) 70%),
+    radial-gradient(120% 90% at 50% 120%, rgba(255,120,60,.08), rgba(0,0,0,0) 60%);
+}
+.bk-persp { position: absolute; inset: 0; perspective: 2600px; perspective-origin: 50% 46%; }
+.bk { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; }
+
+.bk-ombra { position: absolute; left: 3%; right: 3%; bottom: -4%; height: 8%; background: rgba(0,0,0,.8); filter: blur(28px); transform: translateZ(-30px); border-radius: 50%; }
+
+.foglio { position: absolute; left: 50%; top: 0; width: var(--pw); height: 100%; transform-origin: 0 50%; transform-style: preserve-3d; }
+body.is-singola .foglio { left: 0; }
+.faccia { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.faccia.retro { transform: rotateY(180deg); }
+.faccia > .vel { position: absolute; inset: 0; pointer-events: none; z-index: 20; background: #000; opacity: 0; }
+.faccia::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 21; background: #000; opacity: var(--ombra, 0); }
+
+.bk-base { position: absolute; left: 50%; top: 0; width: var(--pw); height: 100%; transform-style: flat; }
+body.is-singola .bk-base { left: 0; }
+.bk-base-in { position: absolute; inset: 0; background: #0f0f0e; }
+
+/* spessore delle pagine ai lati: righe sottili come i tagli della carta */
+.bk-spessore {
+  position: absolute; top: .6%; height: 98.8%; width: 0;
+  background: repeating-linear-gradient(90deg, #f0ebdf 0 1.2px, #bdb6a5 1.2px 2.4px);
+  transform-style: flat;
+}
+.bk-sp-dx { left: 100%; transform-origin: 0 50%; transform: rotateY(90deg); }
+.bk-sp-sx { right: 100%; transform-origin: 100% 50%; transform: rotateY(-90deg); }
+body.is-singola .bk-spessore { display: none; }
+
+/* pagine */
+.pg-cop { position: absolute; inset: 0; }
+.pg-cop .cover { border-radius: 0 1.4cqw 1.4cqw 0; }
+
+.bk-nota { position: absolute; left: 50%; bottom: clamp(12px, 2.4vh, 24px); transform: translateX(-50%); font: 400 .66rem/1 var(--mono); letter-spacing: .22em; text-transform: uppercase; color: #8d897c; opacity: 0; }
+.bk-invito { position: absolute; left: 50%; bottom: clamp(10px, 2vh, 22px); transform: translateX(-50%); font: 700 .66rem/1 var(--mono); letter-spacing: .24em; text-transform: uppercase; color: #cfcab9; opacity: 0; white-space: nowrap; }
+
+@keyframes cola { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }

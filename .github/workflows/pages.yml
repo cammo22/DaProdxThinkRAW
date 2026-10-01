@@ -1,0 +1,39 @@
+# GitHub Pages: il sito è statico (niente da compilare), si pubblica a ogni push su main.
+# Il risultato finisce sul ramo gh-pages. Se Pages non si accende da solo:
+# Settings → Pages → Build and deployment → Deploy from a branch → gh-pages / (root).
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  pubblica:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Prepara il sito
+        run: |
+          mkdir _sito
+          cp -r index.html assets _sito/
+          touch _sito/.nojekyll
+      - name: Pubblica sul ramo gh-pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cd _sito
+          git init -q -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Pages: ${GITHUB_SHA::7}"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+          echo "pubblicato: https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/"
