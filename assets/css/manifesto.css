@@ -1,0 +1,50 @@
+/* Dentro lo schermo: menu da iPod, manifesto che si accende parola per parola, poi lo schermo si spegne */
+
+#manifesto { height: 560vh; background: #0b0b0a; }
+.lcd-stage { background: #0b0b0a; color: var(--lcd-ink); }
+.lcd-schermo { position: absolute; inset: 0; transform-origin: 50% 50%; overflow: hidden; }
+
+.lcd-schermo .lcd-bar {
+  position: absolute; left: clamp(14px, 6vw, 90px); right: clamp(14px, 6vw, 90px); top: calc(var(--hud-h) + 14px);
+  background: none; border-bottom: 1.5px solid var(--lcd-ink); padding: .5rem 0;
+  font-size: .78rem;
+}
+.lcd-play { font-size: .7rem; }
+
+.lcd-menu { position: absolute; left: 50%; top: 50%; width: min(760px, 88vw); transform: translate(-50%, -50%); }
+.lcd-menu ul { border: 1.5px solid var(--lcd-ink); background: rgba(255,255,255,.12); }
+.lcd-menu li {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: clamp(.7rem, 2.2vh, 1.15rem) clamp(1rem, 2vw, 1.6rem);
+  font: 800 clamp(1.5rem, 4.4vw, 3.6rem)/1 var(--ui); font-stretch: 118%; letter-spacing: -.025em; text-transform: uppercase;
+  border-bottom: 1.5px solid rgba(22,24,18,.18);
+  cursor: pointer; transition: background .12s, color .12s;
+}
+.lcd-menu li:last-child { border-bottom: 0; }
+.lcd-menu li em { font: 400 clamp(.7rem, 1.2vw, .95rem) var(--mono); font-style: normal; letter-spacing: .08em; opacity: .7; }
+.lcd-menu li.sel { background: var(--lcd-ink); color: var(--lcd); }
+.lcd-menu li.sel span::after { content: '  ▸'; font-weight: 400; }
+.lcd-hint { margin-top: 1.1rem; text-align: center; font: 400 .72rem var(--mono); letter-spacing: .2em; text-transform: uppercase; animation: lampeggia 1.4s steps(2) infinite; }
+@keyframes lampeggia { 50% { opacity: .15; } }
+
+.lcd-testo {
+  position: absolute; left: 50%; top: 50%; width: min(1180px, 88vw); transform: translate(-50%, -50%);
+  font: 800 clamp(1.7rem, 4.3vw, 4.1rem)/1.06 var(--ui); font-stretch: 108%; letter-spacing: -.028em;
+  text-wrap: balance; opacity: 0;
+}
+.lcd-testo .w { opacity: .13; transition: none; display: inline; }
+.lcd-testo .x { position: relative; }
+.lcd-testo .x::after { content: ''; position: absolute; left: -2%; right: -2%; top: 54%; height: .09em; background: var(--lcd-ink); transform: scaleX(0); transform-origin: left; transition: transform .7s var(--ease-out); }
+.lcd-testo .x.sbarra::after { transform: scaleX(1); }
+.lcd-testo .sw { position: relative; display: inline-block; vertical-align: baseline; }
+.lcd-testo .sw b { font: inherit; display: inline-block; transition: transform .8s var(--ease-out), opacity .5s; }
+.lcd-testo .sw b + b { position: absolute; left: 0; top: 0; opacity: 0; transform: translateY(.6em) rotate(4deg); color: var(--accento); text-transform: uppercase; font-stretch: 125%; font-weight: 900; }
+.lcd-testo .sw.raw b:first-child { opacity: 0; transform: translateY(-.6em) rotate(-4deg); }
+.lcd-testo .sw.raw b + b { opacity: 1; transform: none; }
+
+.lcd-scrub { position: absolute; left: clamp(14px, 6vw, 90px); right: clamp(14px, 6vw, 90px); bottom: clamp(28px, 6vh, 56px); display: flex; align-items: center; gap: 1rem; font: 400 .74rem var(--mono); letter-spacing: .06em; }
+.lcd-linea { flex: 1; height: 10px; border: 1.5px solid var(--lcd-ink); padding: 1.5px; position: relative; }
+.lcd-linea i { display: block; height: 100%; background: var(--lcd-ink); transform-origin: left; transform: scaleX(0); }
+@media (min-width: 761px) { .lcd-scrub { right: calc(clamp(14px, 6vw, 90px) + 150px); } }
+
+.lcd-linea-spenta { position: absolute; left: 50%; top: 50%; width: 100%; height: 3px; margin-top: -1.5px; background: #fff; opacity: 0; transform-origin: 50% 50%; box-shadow: 0 0 22px 6px rgba(255,255,255,.8); pointer-events: none; }
