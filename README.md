@@ -6,7 +6,7 @@
 
 Un libro-oggetto che smonta la perfezione. Qui si sfoglia scrollando.
 
-<a href="https://cammo22.github.io/DaProdxThinkRAW/"><img src="assets/readme/bottone.svg" alt="Apri THINK RAW." width="420"></a>
+<a href="https://cammo22.github.io/DaProdxThinkRAW/"><img src="assets/readme/bottone.svg" alt="Apri THINK RAW." width="520"></a>
 
 <sub>[cammo22.github.io/DaProdxThinkRAW](https://cammo22.github.io/DaProdxThinkRAW/)</sub>
 
