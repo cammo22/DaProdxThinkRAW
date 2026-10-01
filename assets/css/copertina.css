@@ -1,0 +1,111 @@
+/* La copertina. Tutte le misure sono in cqw (1cqw = 1% della larghezza del libro):
+   così lo stesso disegno sta sul tavolo, nella timeline e dentro il libro che si apre. */
+
+.cover {
+  position: relative; width: 100%; height: 100%;
+  container-type: inline-size; container-name: cover;
+  overflow: hidden; background: var(--carta);
+  color: #0b0b0a; font-family: var(--ui);
+  border-radius: .6cqw 1.4cqw 1.4cqw .6cqw;
+}
+.cover-paper {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 90% at 18% 6%, rgba(255,255,255,.55), rgba(255,255,255,0) 55%),
+    radial-gradient(90% 70% at 100% 100%, rgba(120,100,70,.14), rgba(120,100,70,0) 60%),
+    var(--carta);
+}
+.cover-paper::after { content: ''; position: absolute; inset: 0; background: url('../img/grana.jpg') 0 0 / 150cqw auto; mix-blend-mode: multiply; opacity: .42; }
+
+.c-title {
+  position: absolute; left: 14.2cqw; top: 9cqw;
+  font-weight: 900; font-stretch: 125%; font-size: 13.4cqw; line-height: .84; letter-spacing: -.045em;
+  display: flex; flex-direction: column; text-transform: uppercase;
+}
+.c-title i { font-style: normal; display: inline-block; }
+.c-parts { position: absolute; right: 8.5cqw; top: 5.6cqw; font-size: 2.15cqw; line-height: 1.4; font-weight: 450; }
+.c-sub { position: absolute; left: 14.6cqw; top: 53cqw; font-size: 2.7cqw; line-height: 1.42; font-weight: 450; }
+
+.c-dieline {
+  position: absolute; left: 43cqw; top: 37cqw; width: 47.5cqw; height: 66cqw;
+  border: .24cqw dashed rgba(10,10,10,.5); border-radius: 3.6cqw;
+}
+
+/* finestra d'acrilico con lo schermo */
+.c-window {
+  position: absolute; left: 51.5cqw; top: 42.5cqw; width: 31cqw; height: 19.4cqw;
+  border-radius: 1.5cqw; padding: 1.1cqw;
+  background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(215,220,215,.55) 40%, rgba(255,255,255,.8));
+  box-shadow:
+    0 0 0 .22cqw rgba(255,255,255,.9),
+    0 .2cqw .5cqw .15cqw rgba(0,0,0,.3),
+    1.1cqw 1.6cqw 2.4cqw rgba(0,0,0,.28),
+    inset 0 0 0 .2cqw rgba(0,0,0,.08),
+    inset .35cqw .35cqw .5cqw rgba(255,255,255,.9),
+    inset -.3cqw -.4cqw .6cqw rgba(0,0,0,.18);
+  transform: translateZ(.1px);
+}
+.c-lcd {
+  position: relative; width: 100%; height: 100%; border-radius: .6cqw; overflow: hidden;
+  background:
+    repeating-linear-gradient(90deg, rgba(40,40,36,.17) 0 .28cqw, transparent .28cqw 3.1cqw),
+    repeating-linear-gradient(90deg, rgba(40,40,36,.09) 0 .22cqw, transparent .22cqw 1.15cqw),
+    linear-gradient(#d4d7d0, #c4c8c0);
+  box-shadow: inset 0 0 1.6cqw rgba(0,0,0,.28);
+  display: grid; place-items: center;
+}
+.c-dot { width: 3.4cqw; height: 3.4cqw; border-radius: 50%; background: #1b1c18; opacity: .9; display: block; }
+.c-glare {
+  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(112deg, rgba(255,255,255,0) 28%, rgba(255,255,255,.55) calc(42% + var(--gx, 0%)), rgba(255,255,255,0) calc(56% + var(--gx, 0%)));
+  mix-blend-mode: soft-light; opacity: .9;
+}
+.c-window::after {
+  content: ''; position: absolute; inset: 1.1cqw; border-radius: .6cqw; pointer-events: none;
+  background: linear-gradient(112deg, rgba(255,255,255,0) 30%, rgba(255,255,255,.38) calc(40% + var(--gx, 0%)), rgba(255,255,255,0) calc(50% + var(--gx, 0%)));
+}
+
+/* rotella: inserto in stampa 3D */
+.c-wheel {
+  position: absolute; left: 53.5cqw; top: 69.5cqw; width: 27cqw; height: 27cqw; border-radius: 50%;
+  background: radial-gradient(circle at 34% 26%, #f8f5ed, #e2ddd0 62%, #cdc7b7);
+  box-shadow:
+    0 .15cqw .3cqw rgba(0,0,0,.35),
+    .9cqw 1.5cqw 2.2cqw rgba(0,0,0,.3),
+    inset .25cqw .35cqw .5cqw rgba(255,255,255,.9),
+    inset -.3cqw -.5cqw .8cqw rgba(0,0,0,.16);
+  color: #77736a;
+}
+.c-ring { position: absolute; inset: 0; border-radius: 50%; background: repeating-radial-gradient(circle, rgba(0,0,0,0) 0 .55cqw, rgba(0,0,0,.05) .55cqw .7cqw); -webkit-mask: radial-gradient(circle, transparent 32%, #000 33%); mask: radial-gradient(circle, transparent 32%, #000 33%); }
+.c-lab { position: absolute; font-family: var(--ui); font-weight: 700; font-stretch: 105%; font-size: 2.1cqw; line-height: 1; letter-spacing: .02em; }
+.c-menu { left: 50%; top: 2.8cqw; transform: translateX(-50%); }
+svg.c-lab { width: 3.6cqw; height: 2.1cqw; }
+.c-prev { left: 3cqw; top: 50%; transform: translateY(-50%); }
+.c-next { right: 3cqw; top: 50%; transform: translateY(-50%); }
+.c-play { left: 50%; bottom: 3cqw; transform: translateX(-50%); }
+.c-center {
+  position: absolute; left: 50%; top: 50%; width: 11.6cqw; height: 11.6cqw; margin: -5.8cqw 0 0 -5.8cqw; border-radius: 50%;
+  background: radial-gradient(circle at 36% 28%, #fdfbf5, #e9e5da 62%, #d8d2c3);
+  box-shadow: 0 0 0 .18cqw rgba(0,0,0,.18), .2cqw .4cqw .8cqw rgba(0,0,0,.3), inset .2cqw .3cqw .4cqw #fff, inset -.2cqw -.3cqw .5cqw rgba(0,0,0,.12);
+}
+
+.c-logo { position: absolute; right: 6.4cqw; top: 114.5cqw; width: 7.6cqw; height: auto; }
+.c-author { position: absolute; left: 14.6cqw; top: 125.6cqw; font: 400 1.9cqw/1 var(--mono); letter-spacing: .02em; }
+
+/* piastra d'acciaio con due bulloni */
+.c-plate {
+  position: absolute; left: 0; top: -1cqw; bottom: -1cqw; width: 9.6cqw;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,.42), rgba(255,255,255,.28) 7%, rgba(255,255,255,0) 22%, rgba(0,0,0,.1) 52%, rgba(255,255,255,.3) 84%, rgba(0,0,0,.34)),
+    linear-gradient(180deg, rgba(255,255,255,.2), rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,.18)),
+    url('../img/acciaio.jpg') 0 0 / 38cqw auto,
+    #9a9fa0;
+  filter: saturate(.35) contrast(1.08);
+  box-shadow: .9cqw 0 1.6cqw rgba(0,0,0,.4), 3cqw .6cqw 3.4cqw -1cqw rgba(0,0,0,.28);
+}
+.c-plate::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: .3cqw; background: linear-gradient(90deg, rgba(255,255,255,.6), rgba(0,0,0,.3)); }
+.bolt { position: absolute; left: 50%; width: 7cqw; height: 7cqw; margin: -3.5cqw 0 0 -3.5cqw; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #e9ecec, #8f9596 70%, #6e7475); box-shadow: .4cqw .8cqw 1cqw rgba(0,0,0,.45), inset 0 0 0 .2cqw rgba(0,0,0,.25); }
+.bolt::before { content: ''; position: absolute; inset: 1.05cqw; background: linear-gradient(135deg, #f1f3f3, #9ba1a2 45%, #c8cccd 60%, #7d8384); clip-path: polygon(25% 6.7%, 75% 6.7%, 100% 50%, 75% 93.3%, 25% 93.3%, 0 50%); filter: drop-shadow(0 .3cqw .3cqw rgba(0,0,0,.45)); }
+.bolt::after { content: ''; position: absolute; inset: 2.45cqw; border-radius: 50%; background: radial-gradient(circle at 38% 32%, #fff, #a9afb0 60%, #7d8384); box-shadow: inset 0 0 .3cqw rgba(0,0,0,.5); }
+.bolt.b1 { top: 9.4cqw; }
+.bolt.b2 { top: 124cqw; }

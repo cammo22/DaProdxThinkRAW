@@ -1,0 +1,87 @@
+/* Il libro sul tavolo: scena 3D, luce delle foglie, didascalie con le linee */
+
+#hero { height: 620vh; background: #c9a273; }
+#hero .stage { background: #c9a273; }
+
+.scene { position: absolute; inset: 0; perspective: 2700px; perspective-origin: 50% 44%; }
+.camera { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 50%; }
+.desk { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform-style: preserve-3d; }
+
+.desk-top {
+  position: absolute; left: -2800px; top: -2600px; width: 5600px; height: 5200px;
+  background: url('../img/legno.jpg') center / 1500px auto, var(--legno);
+  transform: translateZ(-2px);
+}
+.desk-top::after { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 55% at 56% 38%, rgba(255,240,205,.38), rgba(255,240,205,0) 70%), radial-gradient(90% 90% at 50% 50%, rgba(0,0,0,0) 55%, rgba(60,30,0,.28)); }
+
+/* ─── il libro ─── */
+.book {
+  --bw: 520px; --bt: calc(var(--bw) * .07);
+  position: absolute; width: var(--bw); height: calc(var(--bw) * 4 / 3);
+  left: calc(var(--bw) / -2); top: calc(var(--bw) * -2 / 3);
+  transform-style: preserve-3d;
+}
+.book-shadow { position: absolute; inset: 0; background: rgba(48, 24, 4, .62); filter: blur(calc(var(--bw) * .034)); transform: translate3d(calc(var(--bw) * .03), calc(var(--bw) * .06), -1px) scale(1.005); border-radius: 2%; }
+.book-front { position: absolute; inset: 0; transform: translateZ(var(--bt)); backface-visibility: hidden; box-shadow: 0 0 0 1px rgba(0,0,0,.08); }
+.book-front .cover { box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); }
+
+.book-edge {
+  position: absolute; backface-visibility: hidden;
+  background: repeating-linear-gradient(var(--dir, 180deg), #f0ebdf 0 1.4px, #cfc8b7 1.4px 2.8px);
+}
+.book-edge::after { content: ''; position: absolute; inset: 0; background: var(--ombra, none); }
+.e-b { left: 0; width: 100%; top: calc(100% - var(--bt)); height: var(--bt); transform-origin: 50% 100%; transform: rotateX(-90deg); --ombra: linear-gradient(180deg, rgba(80,60,30,.05), rgba(80,60,30,.28)); }
+.e-t { left: 0; width: 100%; top: 0; height: var(--bt); transform-origin: 50% 0; transform: rotateX(90deg); --ombra: linear-gradient(0deg, rgba(80,60,30,.05), rgba(80,60,30,.28)); }
+.e-r { --dir: 90deg; top: 0; height: 100%; left: calc(100% - var(--bt)); width: var(--bt); transform-origin: 100% 50%; transform: rotateY(90deg); --ombra: linear-gradient(90deg, rgba(80,60,30,.05), rgba(80,60,30,.32)); }
+.e-l { --dir: 90deg; top: 0; height: 100%; left: 0; width: var(--bt); transform-origin: 0 50%; transform: rotateY(-90deg); background: linear-gradient(90deg, #5c6162, #b9bdbd 40%, #6c7172), #888; --ombra: linear-gradient(90deg, rgba(0,0,0,.35), rgba(0,0,0,0)); }
+
+/* ─── oggetti sul tavolo ─── */
+.prop-penna { position: absolute; transform-style: preserve-3d; --d: calc(var(--bw, 520px) * .072); }
+.prop-penna i { position: absolute; display: block; }
+.p-body { left: 0; top: 0; width: 100%; height: 100%; border-radius: var(--d); background: linear-gradient(180deg, #5d5d5a 0%, #1c1c1b 24%, #050505 62%, #2a2a28 100%); box-shadow: calc(var(--bw, 520px)*.022) calc(var(--bw, 520px)*.04) calc(var(--bw, 520px)*.032) rgba(40,20,0,.5); }
+.p-cap { left: 0; top: 0; width: 41%; height: 100%; border-radius: var(--d) 0 0 var(--d); background: linear-gradient(180deg, #6a6a67 0%, #242423 24%, #0b0b0b 62%, #343432 100%); box-shadow: inset -2px 0 0 rgba(255,255,255,.14), inset -5px 0 6px rgba(0,0,0,.4); }
+.p-clip { left: 5%; top: 7%; width: 27%; height: 20%; border-radius: 99px; background: linear-gradient(180deg, #d4d4d0, #6e6e6a); box-shadow: 0 1px 2px rgba(0,0,0,.5); }
+.p-tip { left: 97%; top: 12%; width: 9%; height: 76%; background: linear-gradient(180deg, #55554f, #16160f 50%, #35352f); clip-path: polygon(0 0, 100% 40%, 100% 60%, 0 100%); }
+
+.prop-tazza { position: absolute; transform-style: preserve-3d; }
+
+.stack-libri { position: absolute; transform-style: preserve-3d; }
+
+/* ─── luce ─── */
+.luce-foglie { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; transform-origin: 0 0; }
+.luce-foglie .ombra { mix-blend-mode: multiply; filter: blur(7px); opacity: .5; }
+.luce-sole {
+  position: absolute; inset: -10%; pointer-events: none; mix-blend-mode: multiply; opacity: .55;
+  background:
+    repeating-linear-gradient(104deg, rgba(60,40,10,0) 0 6vw, rgba(60,40,10,.16) 6vw 9vw, rgba(60,40,10,0) 9vw 15vw);
+  filter: blur(22px);
+  animation: sole 14s ease-in-out infinite alternate;
+}
+@keyframes sole { from { transform: translateX(-2vw) skewX(0deg); } to { transform: translateX(2vw) skewX(2deg); } }
+
+/* ─── didascalie con linee ─── */
+.call-linee { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.call-linee path { fill: none; stroke: #0c0c0b; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.call-linee circle { fill: #0c0c0b; }
+.call-lista { position: absolute; inset: 0; pointer-events: none; }
+.call { position: absolute; left: 0; top: 0; margin: 0; font: 700 clamp(.78rem, 1.05vw, .98rem)/1.15 var(--ui); font-stretch: 112%; white-space: nowrap; opacity: 0; will-change: transform, opacity; }
+.call b { display: block; font: 700 .64rem/1 var(--mono); letter-spacing: .14em; margin-bottom: .45rem; }
+.call small { display: block; margin-top: .35rem; font: 400 .66rem/1.3 var(--mono); letter-spacing: .02em; opacity: .65; }
+.call.sx { text-align: right; }
+
+.hero-didascalia { position: absolute; left: clamp(14px, 2.4vw, 32px); bottom: clamp(16px, 3vh, 30px); display: flex; flex-direction: column; gap: .35rem; font: 400 .66rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: #1a1209; }
+.hero-didascalia span:first-child { font-weight: 700; }
+.scorri { position: absolute; left: 50%; bottom: clamp(16px, 3vh, 30px); transform: translateX(-50%); display: flex; align-items: center; gap: .7rem; font: 700 .62rem/1 var(--mono); letter-spacing: .2em; text-transform: uppercase; color: #1a1209; }
+.scorri i { width: 18px; height: 28px; border: 1.5px solid currentColor; border-radius: 10px; position: relative; }
+.scorri i::after { content: ''; position: absolute; left: 50%; top: 5px; width: 2px; height: 6px; margin-left: -1px; border-radius: 2px; background: currentColor; animation: rotellina 1.6s var(--ease-in-out) infinite; }
+@keyframes rotellina { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(9px); opacity: 0; } 100% { opacity: 0; } }
+
+/* lo schermo che prende tutto */
+.lcd-ingresso { position: absolute; inset: 0; opacity: 0; pointer-events: none; display: grid; place-items: center; }
+.lcd-ingresso .c-dot { width: 12.3vw; height: 12.3vw; max-width: 22vh; max-height: 22vh; }
+
+@media (max-width: 760px) {
+  .call-lista, .call-linee { display: none; }
+  .hero-didascalia { font-size: .58rem; }
+  .scorri span { display: none; }
+}
