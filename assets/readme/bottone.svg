@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="220" viewBox="0 0 680 220" role="img" aria-label="Apri THINK RAW.">
+  <defs>
+    <linearGradient id="corpo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7f3e9"/><stop offset="1" stop-color="#d8d2c2"/></linearGradient>
+    <linearGradient id="lcd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6d9d1"/><stop offset="1" stop-color="#bfc3ba"/></linearGradient>
+    <radialGradient id="ruota" cx=".36" cy=".28" r=".85"><stop offset="0" stop-color="#fbf9f3"/><stop offset=".65" stop-color="#e1dccf"/><stop offset="1" stop-color="#c9c3b2"/></radialGradient>
+    <radialGradient id="centro" cx=".38" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#e8e4d9"/><stop offset="1" stop-color="#d4cebe"/></radialGradient>
+    <pattern id="righe" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="1.2" height="5" fill="#282824" opacity=".13"/></pattern>
+    <filter id="ombra" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#000" flood-opacity=".28"/></filter>
+    <clipPath id="schermo"><rect x="30" y="32" width="388" height="156" rx="12"/></clipPath>
+  </defs>
+
+  <rect x="6" y="6" width="668" height="196" rx="34" fill="url(#corpo)" stroke="#0c0c0b" stroke-width="2.5" filter="url(#ombra)"/>
+  <rect x="9" y="9" width="662" height="190" rx="31" fill="none" stroke="#fff" stroke-opacity=".8" stroke-width="2"/>
+
+  <!-- schermo -->
+  <rect x="30" y="32" width="388" height="156" rx="12" fill="url(#lcd)"/>
+  <g clip-path="url(#schermo)" font-family="ui-monospace,Menlo,Consolas,monospace" fill="#161812">
+    <rect x="30" y="32" width="388" height="28" fill="#bfc3ba"/>
+    <path d="M30 60h388" stroke="#161812" stroke-width="1.5"/>
+    <path d="M46 40l9 6-9 6z"/>
+    <text x="224" y="52" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="3">THINK RAW.</text>
+    <rect x="378" y="40" width="26" height="12" rx="2" fill="none" stroke="#161812" stroke-width="1.6"/><rect x="380" y="42" width="18" height="8" fill="#161812"><animate attributeName="width" values="22;6;22" dur="9s" repeatCount="indefinite"/></rect><rect x="404" y="43" width="3" height="6" fill="#161812"/>
+    <g font-size="17" font-weight="700" opacity=".6"><text x="48" y="87">Ideas</text><text x="370" y="87" font-size="12" font-weight="400">01–02</text>
+      <text x="48" y="114">Processes</text><text x="370" y="114" font-size="12" font-weight="400">03–05</text></g>
+    <rect x="30" y="126" width="388" height="38" fill="#161812"/>
+    <text x="48" y="151" font-size="20" font-weight="700" fill="#cdd0c8" letter-spacing="1">APRI IL LIBRO</text>
+    <path d="M388 138l14 7-14 7z" fill="#cdd0c8"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;.5;.5;1" dur="1.2s" repeatCount="indefinite"/></path>
+    <text x="48" y="182" font-size="11" opacity=".55" letter-spacing="2">GRAPHIC DESIGN FOR A SIMPLER TOMORROW</text>
+    <rect x="30" y="32" width="388" height="156" fill="url(#righe)"/>
+  </g>
+  <rect x="30" y="32" width="388" height="156" rx="12" fill="none" stroke="#0c0c0b" stroke-opacity=".4" stroke-width="2"/>
+
+  <!-- rotella -->
+  <circle cx="548" cy="104" r="76" fill="url(#ruota)" stroke="#0c0c0b" stroke-opacity=".25" stroke-width="1.5"/>
+  <g>
+    <circle cx="548" cy="104" r="64" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="9" stroke-dasharray="1.1 7.2"/>
+    <animateTransform attributeName="transform" type="rotate" from="0 548 104" to="360 548 104" dur="14s" repeatCount="indefinite"/>
+  </g>
+  <g>
+    <circle cx="548" cy="44" r="5" fill="#ff4a1c"/><circle cx="548" cy="44" r="9" fill="#ff4a1c" opacity=".25"/>
+    <animateTransform attributeName="transform" type="rotate" from="0 548 104" to="360 548 104" dur="5s" repeatCount="indefinite"/>
+  </g>
+  <circle cx="548" cy="104" r="30" fill="url(#centro)" stroke="#0c0c0b" stroke-opacity=".22" stroke-width="1.5"/>
+  <path d="M541 92v24l21-12z" fill="#ff4a1c"/>
+</svg>

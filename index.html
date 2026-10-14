@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THINK RAW. — Graphic Design for a Simpler Tomorrow</title>
+<meta name="description" content="THINK RAW. è un libro-oggetto di Graphic Design: un viaggio scrollando fra carte speciali, prestampa, stampa 3D e il valore dell'imperfezione. Samuele Nappo.">
+<meta name="theme-color" content="#e6e1d5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="THINK RAW. — Graphic Design for a Simpler Tomorrow">
+<meta property="og:description" content="Un libro-oggetto che smonta la perfezione. Sfoglialo scrollando.">
+<meta property="og:image" content="https://cammo22.github.io/DaProdxThinkRAW/assets/img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/copertina.css">
+<link rel="stylesheet" href="assets/css/hero.css">
+<link rel="stylesheet" href="assets/css/manifesto.css">
+<link rel="stylesheet" href="assets/css/libro.css">
+<link rel="stylesheet" href="assets/css/pagine.css">
+<link rel="stylesheet" href="assets/css/finale.css">
+</head>
+<body class="is-booting">
+
+<noscript><p class="noscript">THINK RAW. è un sito che si sfoglia scrollando: serve JavaScript acceso. Il libro non può aspettare.</p></noscript>
+
+<!-- ═════════ La copertina: un solo disegno, usato sul tavolo e nel libro ═════════ -->
+<template id="tpl-copertina">
+  <div class="cover">
+    <div class="cover-paper"></div>
+    <h2 class="c-title"><span>THINK</span><span>RAW<i>.</i></span></h2>
+    <ul class="c-parts"><li>Ideas</li><li>Processes</li><li>Results</li></ul>
+    <p class="c-sub">Graphic<br>Design<br>for a<br>Simpler<br>Tomorrow</p>
+    <div class="c-dieline"></div>
+    <div class="c-window">
+      <div class="c-lcd"><i class="c-dot"></i></div>
+      <div class="c-glare"></div>
+    </div>
+    <div class="c-wheel">
+      <span class="c-ring"></span>
+      <span class="c-lab c-menu">MENU</span>
+      <svg class="c-lab c-prev" viewBox="0 0 24 14"><path d="M2 1v12M13 1 4 7l9 6zM22 1l-9 6 9 6z" fill="currentColor"/></svg>
+      <svg class="c-lab c-next" viewBox="0 0 24 14"><path d="M22 1v12M11 1l9 6-9 6zM2 1l9 6-9 6z" fill="currentColor"/></svg>
+      <svg class="c-lab c-play" viewBox="0 0 24 14"><path d="M1 1l10 6-10 6zM15 1h3v12h-3zM20 1h3v12h-3z" fill="currentColor"/></svg>
+      <span class="c-center"></span>
+    </div>
+    <svg class="c-logo" viewBox="0 0 80 60" aria-hidden="true">
+      <ellipse cx="40" cy="30" rx="38" ry="27" fill="#0b0b0a"/>
+      <text x="40" y="43" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="38" style="font-stretch:125%;letter-spacing:-3px" fill="#e8e4da">SN</text>
+    </svg>
+    <p class="c-author">Samuele Nappo</p>
+    <div class="c-plate"><i class="bolt b1"></i><i class="bolt b2"></i></div>
+  </div>
+</template>
+
+<!-- ═════════ Accensione ═════════ -->
+<div id="boot" role="dialog" aria-label="Accensione">
+  <div class="boot-body">
+    <div class="boot-lcd">
+      <pre id="boot-log" aria-live="polite"></pre>
+      <div class="boot-bar"><i id="boot-fill"></i></div>
+    </div>
+    <p class="boot-note">Questo sito si sfoglia scrollando. Meglio con il suono.</p>
+    <div class="boot-actions">
+      <button class="btn btn-solid" data-suono="1" id="boot-si" disabled>▶ Entra con il suono</button>
+      <button class="btn" data-suono="0" id="boot-no" disabled>Entra in silenzio</button>
+    </div>
+  </div>
+</div>
+
+<div class="grana" aria-hidden="true"></div>
+<div class="cur" aria-hidden="true"><i class="cur-dot"></i><b class="cur-ring"></b><span class="cur-lab"></span></div>
+
+<!-- ═════════ HUD ═════════ -->
+<header class="hud">
+  <a class="hud-logo" href="#top" data-vai="0" data-cursore="Su">THINK RAW.</a>
+  <div class="hud-dove"><span id="dove-parte">Copertina</span><b id="dove-titolo"></b></div>
+  <div class="hud-tools">
+    <button id="btn-suono" class="hud-btn" aria-label="Accendi o spegni il suono" aria-pressed="false"><span class="snd"><i></i><i></i><i></i><i></i></span></button>
+    <button id="btn-menu" class="hud-btn hud-menu" aria-label="Apri il menu">Menu</button>
+  </div>
+</header>
+<div class="hud-bar" aria-hidden="true"><i id="hud-fill"></i></div>
+
+<!-- Menu come lo schermo di un iPod -->
+<div id="menu" class="menu" aria-hidden="true" role="dialog" aria-label="Indice">
+  <div class="menu-lcd">
+    <div class="lcd-bar"><span>▶</span><b>THINK RAW.</b><span class="batt"><i></i></span></div>
+    <ul id="menu-lista"></ul>
+    <p class="menu-aiuto">↑ ↓ scegli &nbsp;·&nbsp; Invio vai &nbsp;·&nbsp; Esc chiudi</p>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ═════════ 1 · Il libro sul tavolo ═════════ -->
+  <section id="hero" class="sec">
+    <div class="stage">
+      <div class="scene">
+        <div class="camera">
+          <div class="desk" id="desk">
+            <div class="desk-top"></div>
+            <div class="stack-libri" id="stack-libri"></div>
+            <div class="prop-penna" id="penna"><i class="p-cap"></i><i class="p-clip"></i><i class="p-body"></i><i class="p-tip"></i></div>
+            <div class="prop-tazza" id="tazza"></div>
+            <div class="book" id="book">
+              <div class="book-shadow"></div>
+              <div class="book-edge e-t"></div>
+              <div class="book-edge e-l"></div>
+              <div class="book-edge e-r"></div>
+              <div class="book-edge e-b"></div>
+              <div class="book-front" id="book-front"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <svg class="luce-foglie" id="foglie" viewBox="0 0 800 600" preserveAspectRatio="xMinYMin slice" aria-hidden="true"></svg>
+      <div class="luce-sole" aria-hidden="true"></div>
+
+      <svg class="call-linee" id="call-linee" aria-hidden="true"></svg>
+      <div class="call-lista" id="call-lista" aria-hidden="true">
+        <p class="call" data-ancora=".c-title" data-pt="0.02,0.3"><b>01</b>Carta speciale<small>grana, peso, inchiostro</small></p>
+        <p class="call" data-ancora=".c-plate" data-pt="0.5,0.5"><b>02</b>Piastra in acciaio<small>due bulloni, nessun segreto</small></p>
+        <p class="call" data-ancora=".c-window" data-pt="1,0.5"><b>03</b>Finestra in acrilico<small>lo schermo che non si accende</small></p>
+        <p class="call" data-ancora=".c-wheel" data-pt="0.93,0.7"><b>04</b>Inserto in stampa 3D<small>la rotella, da toccare</small></p>
+      </div>
+
+      <div class="hero-didascalia">
+        <span>Libro-oggetto</span>
+        <span>Graphic Design 2</span>
+        <span>Samuele Nappo</span>
+      </div>
+      <div class="scorri" id="scorri"><i></i><span>Scorri</span></div>
+
+      <div class="lcd-ingresso lcd-bg" id="lcd-ingresso"><i class="c-dot"></i></div>
+    </div>
+  </section>
+
+  <!-- ═════════ 2 · Dentro lo schermo ═════════ -->
+  <section id="manifesto" class="sec">
+    <div class="stage lcd-stage">
+      <div class="lcd-schermo lcd-bg" id="lcd-schermo">
+        <div class="lcd-bar"><span class="lcd-play">▶</span><b id="lcd-titolo">THINK RAW.</b><span class="batt" aria-hidden="true"><i id="batt-fill"></i></span></div>
+
+        <div class="lcd-menu" id="lcd-menu">
+          <ul>
+            <li data-sp="1"><span>Ideas</span><em>01–02</em></li>
+            <li data-sp="3"><span>Processes</span><em>03–05</em></li>
+            <li data-sp="6"><span>Results</span><em>06–07</em></li>
+          </ul>
+          <p class="lcd-hint">Scorri per entrare ▾</p>
+        </div>
+
+        <p class="lcd-testo" id="lcd-testo">La <span class="x">perfezione</span> è un prodotto. Esce da una fabbrica, uguale a un milione di altre. Noi cerchiamo il resto: la grana, il segno, l’errore che rimane. Smontiamo l’oggetto perfetto per vedere cosa c’era dentro. Pensa <span class="sw">grezzo.</span></p>
+
+        <div class="lcd-scrub" aria-hidden="true">
+          <span id="scrub-a">0:00</span><div class="lcd-linea"><i id="scrub-fill"></i></div><span id="scrub-b">-3:14</span>
+        </div>
+      </div>
+      <div class="lcd-linea-spenta" id="lcd-linea-spenta"></div>
+    </div>
+  </section>
+
+  <!-- ═════════ 3 · Il libro che si sfoglia ═════════ -->
+  <section id="libro" class="sec">
+    <div class="stage libro-stage">
+      <div class="libro-luce" aria-hidden="true"></div>
+      <div class="bk-persp" id="bk-persp">
+        <div class="bk" id="bk"></div>
+      </div>
+      <div class="bk-nota" id="bk-nota"><span id="bk-pag">pp. 01</span></div>
+      <div class="bk-invito" id="bk-invito">Scorri per sfogliare</div>
+    </div>
+  </section>
+
+  <!-- ═════════ 4 · Finale ═════════ -->
+  <section id="finale" class="sec-fine">
+    <div class="fin-marquee" aria-hidden="true"><div class="fin-riga" id="fin-riga"></div></div>
+
+    <div class="fin-corpo">
+      <figure class="fin-foto" id="fin-foto">
+        <div class="fin-cornice"><img src="assets/img/foto-libro.jpg" alt="Il libro THINK RAW. su una scrivania: copertina color carta, piastra d'acciaio con due bulloni, finestra d'acrilico e rotella in stampa 3D." loading="lazy" width="1312" height="1199"></div>
+        <figcaption><span>Fig. 01</span> L’oggetto, preso dall’alto. La luce entra da sinistra e non chiede permesso.</figcaption>
+      </figure>
+
+      <div class="fin-testo">
+        <p class="fin-kicker">THINK RAW. · Graphic Design 2</p>
+        <h2>Il resto del libro<br>arriva <em>presto</em>.</h2>
+        <p>Questa è un’anteprima: mostra come si sfoglia, non tutto quello che c’è scritto. Le pagine vere — testi, tavole, processi — si aggiungono qui, spread dopo spread.</p>
+        <div class="fin-azioni">
+          <a class="btn btn-solid" href="#top" data-vai="0">↑ Ricomincia</a>
+          <a class="btn" href="#libro" data-vai="libro">Riapri il libro</a>
+        </div>
+      </div>
+    </div>
+
+    <footer class="fin-piede">
+      <p><b>THINK RAW.</b> di Samuele Nappo</p>
+      <p>Sito a cura di DaProd</p>
+      <p>Ideas · Processes · Results</p>
+    </footer>
+  </section>
+</main>
+
+<!-- La rotella che porta in giro -->
+<nav class="rotella" id="rotella" aria-label="Navigazione a rotella">
+  <div class="rot-anello" id="rot-anello"></div>
+  <button class="rot-b rot-su" data-az="menu" aria-label="Menu"><span>MENU</span></button>
+  <button class="rot-b rot-sx" data-az="indietro" aria-label="Indietro"><svg viewBox="0 0 24 14"><path d="M2 1v12M13 1 4 7l9 6zM22 1l-9 6 9 6z" fill="currentColor"/></svg></button>
+  <button class="rot-b rot-dx" data-az="avanti" aria-label="Avanti"><svg viewBox="0 0 24 14"><path d="M22 1v12M11 1l9 6-9 6zM2 1l9 6-9 6z" fill="currentColor"/></svg></button>
+  <button class="rot-b rot-giu" data-az="gira" aria-label="Scorrimento automatico"><svg viewBox="0 0 24 14"><path d="M1 1l10 6-10 6zM15 1h3v12h-3zM20 1h3v12h-3z" fill="currentColor"/></svg></button>
+  <button class="rot-centro" data-az="avanti" aria-label="Avanti"></button>
+</nav>
+
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>
