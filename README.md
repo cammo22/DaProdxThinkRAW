@@ -2,6 +2,8 @@
 
 # THINK RAW.
 
+[![Discord](https://img.shields.io/badge/Discord-DaProd-5865F2?logo=discord&logoColor=white)](https://discord.gg/Njs52aacwq)
+
 **Graphic Design for a Simpler Tomorrow** — di Samuele Nappo
 
 Un libro-oggetto che smonta la perfezione. Qui si sfoglia scrollando.
