@@ -1,3 +1,8 @@
+<!-- discord-card -->
+<p align="center">
+  <a href="https://discord.gg/Njs52aacwq"><img src=".github/discord-card.svg" alt="Entra nella community DaProd su Discord" width="720"></a>
+</p>
+
 <div align="center">
 
 # THINK RAW.
@@ -88,14 +93,3 @@ Il libro è una lista di *spread* (doppie pagine) in `assets/js/content.js`. Ogn
 ## Pubblicazione
 
 Il workflow `.github/workflows/pages.yml` pubblica il sito a ogni push su `main`: prova il deploy ufficiale di GitHub Actions (che accende Pages da solo) e in più copia il sito sul ramo `gh-pages`. Se Pages non si accende: **Settings → Pages → Build and deployment → Deploy from a branch → `gh-pages` / (root)**.
-
----
-
-<!-- discord-card -->
-## 💬 Community
-
-<p align="center">
-  <a href="https://discord.gg/Njs52aacwq"><img src=".github/discord-card.svg" alt="Entra nella community DaProd su Discord" width="720"></a>
-</p>
-
-Domande, idee, bug o solo voglia di chiacchierare? Entra nel **[Discord di DaProd](https://discord.gg/Njs52aacwq)**: ogni app ha la sua stanza e le nuove versioni arrivano in automatico.
